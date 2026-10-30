@@ -1,0 +1,1009 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090b0a">
+<meta name="color-scheme" content="dark">
+
+<title>Meet New People — USA Connections</title>
+<meta name="description" content="Discover new people and start a friendly conversation. Explore profiles at your own pace.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="🟢 Discover New People">
+<meta property="og:description" content="Some of the best conversations begin when you least expect them.">
+<meta property="og:image" content="https://norge-single22.pages.dev/preview.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Discover New Connections">
+<meta name="twitter:description" content="Meet new people and make new connections.">
+<meta name="twitter:image" content="https://norge-single22.pages.dev/preview.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #090b0a;
+  --panel: rgba(17, 21, 19, .88);
+  --white: #f5f6f2;
+  --muted: #a6ada6;
+  --green: #b9efc9;
+  --green-dark: #5dc782;
+  --line: rgba(255,255,255,.12);
+  --radius: 26px;
+  --ease: cubic-bezier(.2,.75,.25,1);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  min-height: 100%;
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--white);
+  background: var(--bg);
+  font-family: "DM Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, a { font: inherit; }
+a { -webkit-tap-highlight-color: transparent; }
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
+
+.video-bg {
+  position: fixed;
+  inset: -24px;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 35%, #29372e, #090b0a 70%);
+  pointer-events: none;
+}
+
+.video-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(25px) brightness(.29) saturate(.8);
+  transform: scale(1.08);
+}
+
+.video-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(4,7,5,.2), rgba(4,7,5,.4) 40%, #090b0a 100%),
+    radial-gradient(ellipse at 50% 20%, transparent, rgba(0,0,0,.38) 75%);
+}
+
+.layout {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 22px;
+}
+
+.nav {
+  width: min(100%, 1100px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--white);
+  font-family: Manrope, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .7px;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(185,239,201,.32);
+  border-radius: 12px;
+  color: var(--green);
+  background: rgba(185,239,201,.08);
+  font-size: 17px;
+}
+
+.nav-note {
+  color: #d2d9d1;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.stage {
+  width: min(100%, 1100px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 440px);
+  align-items: center;
+  gap: clamp(28px, 6vw, 90px);
+  margin: auto 0;
+  padding: 38px 0;
+}
+
+.editorial {
+  max-width: 530px;
+  padding: 20px 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--green);
+}
+
+.editorial h1 {
+  margin: 24px 0 20px;
+  font-family: Manrope, sans-serif;
+  font-size: clamp(42px, 6vw, 76px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -3.8px;
+}
+
+.editorial h1 em {
+  color: var(--green);
+  font-weight: 400;
+}
+
+.editorial-copy {
+  max-width: 410px;
+  margin: 0;
+  color: #b5bcb5;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.editorial-foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 34px;
+  color: #d7ddd6;
+  font-size: 11px;
+}
+
+.foot-line {
+  width: 36px;
+  height: 1px;
+  background: rgba(185,239,201,.55);
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, rgba(28,34,29,.91), rgba(10,13,11,.94));
+  box-shadow: 0 35px 100px rgba(0,0,0,.4), inset 0 1px rgba(255,255,255,.05);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  animation: rise .7s var(--ease) both;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 23px;
+}
+
+.card-kicker {
+  color: #a9b1a8;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border: 1px solid rgba(185,239,201,.19);
+  border-radius: 50px;
+  color: var(--green);
+  background: rgba(185,239,201,.06);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.portrait {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1.08 / 1;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 19px;
+  background: linear-gradient(140deg, #27362c, #111512);
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.portrait::after {
+  content: "";
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.7));
+  pointer-events: none;
+}
+
+.portrait-caption {
+  position: absolute;
+  z-index: 1;
+  left: 17px;
+  right: 17px;
+  bottom: 16px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.person-name {
+  margin: 0;
+  font-family: Manrope, sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: -.8px;
+}
+
+.person-location {
+  margin-top: 5px;
+  color: rgba(255,255,255,.8);
+  font-size: 11px;
+}
+
+.verified {
+  display: inline-grid;
+  width: 19px;
+  height: 19px;
+  margin-left: 4px;
+  place-items: center;
+  border-radius: 50%;
+  color: #102116;
+  background: var(--green);
+  font-size: 11px;
+  vertical-align: 3px;
+}
+
+.portrait-tag {
+  flex-shrink: 0;
+  padding: 7px 9px;
+  border: 1px solid rgba(255,255,255,.23);
+  border-radius: 9px;
+  background: rgba(0,0,0,.25);
+  color: white;
+  font-size: 9px;
+  backdrop-filter: blur(8px);
+}
+
+.intro {
+  margin: 18px 0 0;
+  color: #b7beb7;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.divider {
+  height: 1px;
+  margin: 20px 0;
+  background: var(--line);
+}
+
+.countdown-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 17px;
+}
+
+.countdown-label {
+  color: #c1c8c0;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.time {
+  min-width: 34px;
+  padding: 8px 7px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 9px;
+  background: rgba(255,255,255,.045);
+  color: white;
+  text-align: center;
+  font-family: Manrope, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.time-separator {
+  color: #899289;
+  font-size: 12px;
+}
+
+.cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 16px 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 15px;
+  color: #102117;
+  background: linear-gradient(115deg, #d0f4d8, #a6e8bb);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  transition: transform .25s var(--ease), filter .25s ease;
+}
+
+.cta::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left: -65%;
+  width: 35%;
+  transform: rotate(20deg);
+  background: rgba(255,255,255,.35);
+  transition: left .55s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+.cta:hover::after { left: 130%; }
+
+.cta-arrow {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 13px;
+  color: #828c82;
+  font-size: 10px;
+  text-align: center;
+}
+
+.footer {
+  width: min(100%, 1100px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 20px;
+  color: #7f897f;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.footer a {
+  color: #b7c1b7;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Popup */
+
+.popup {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(2,5,3,.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.popup.show {
+  display: flex;
+  animation: fade .2s ease both;
+}
+
+.popup-box {
+  position: relative;
+  width: min(100%, 400px);
+  padding: 32px 25px 25px;
+  border: 1px solid var(--line);
+  border-radius: 25px;
+  background: linear-gradient(145deg, #202720, #0b0e0b);
+  box-shadow: 0 30px 100px rgba(0,0,0,.55);
+  text-align: center;
+  animation: rise .3s var(--ease) both;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: white;
+  background: rgba(255,255,255,.05);
+  cursor: pointer;
+}
+
+.popup-symbol {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 18px;
+  place-items: center;
+  border: 1px solid rgba(185,239,201,.25);
+  border-radius: 18px;
+  color: var(--green);
+  background: rgba(185,239,201,.08);
+  font-size: 24px;
+}
+
+.popup h2 {
+  margin: 0 0 10px;
+  font-family: Manrope, sans-serif;
+  font-size: 26px;
+  letter-spacing: -.8px;
+}
+
+.popup p {
+  margin: 0 0 22px;
+  color: #b4bdb4;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.popup-secondary {
+  display: inline-block;
+  margin-top: 17px;
+  padding: 5px;
+  border: 0;
+  color: #a1aba1;
+  background: transparent;
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.popup-open { overflow: hidden; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (min-width: 1500px) {
+  .layout { padding-top: 30px; padding-bottom: 28px; }
+}
+
+@media (max-width: 800px) {
+  .layout { padding: 16px 16px 14px; }
+  .nav { margin-bottom: 22px; }
+  .stage {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 440px;
+    gap: 22px;
+    margin: 0 auto;
+    padding: 0 0 24px;
+  }
+  .editorial {
+    padding: 8px 2px 0;
+    text-align: center;
+  }
+  .eyebrow { justify-content: center; }
+  .editorial h1 {
+    margin: 16px 0 12px;
+    font-size: clamp(36px, 8vw, 52px);
+    letter-spacing: -2px;
+  }
+  .editorial-copy {
+    margin: 0 auto;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .editorial-foot { justify-content: center; margin-top: 18px; }
+  .card { padding: 19px; }
+  .portrait { aspect-ratio: 1.25 / 1; }
+  .footer { padding-top: 16px; }
+}
+
+@media (max-width: 380px) {
+  .layout { padding: 12px 11px; }
+  .nav-note { font-size: 9px; letter-spacing: 1px; }
+  .card { padding: 15px; border-radius: 21px; }
+  .card-top { margin-bottom: 16px; }
+  .person-name { font-size: 23px; }
+  .portrait { aspect-ratio: 1.12 / 1; }
+  .intro { margin-top: 13px; }
+  .divider { margin: 15px 0; }
+  .footer { font-size: 9px; }
+}
+
+@media (max-height: 760px) and (min-width: 801px) {
+  .layout { padding-top: 14px; padding-bottom: 12px; }
+  .stage { padding: 16px 0; gap: 35px; }
+  .editorial h1 { font-size: clamp(40px, 5vw, 60px); }
+  .portrait { aspect-ratio: 1.35 / 1; }
+  .card { padding: 18px; }
+  .intro { margin-top: 12px; }
+  .divider { margin: 14px 0; }
+  .footer { padding-top: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<script>
+/* =====================================================
+   CONFIGURATION — CUSTOMIZE THESE VALUES
+===================================================== */
+
+const AFFILIATE_URL = "https://llzwaj.magneticdattes.com/?utm_source=da57dc555e50572d&ban=other&j1=1&s1=189323&s2=1958812&s3=BOOGEYMAN&s5=BOOGEYMAN&click_id=Qk9PR0VZTUFOLFJPLDE4NS4xNjMuMTEwLjIwMSxXQVAsSU1PTkVUSVpFSVQ";
+
+// Example profile details: use a real, authorized profile before publishing.
+const PROFILE_NAME = "Emily";
+const PROFILE_AGE = "38";
+const PROFILE_LOCATION = "Austin, Texas";
+const COUNTDOWN_MINUTES = 14;
+
+/*
+  Stel dit alleen in op true als de afteltijd werkelijk
+  overeenkomt met een echte tijdslimiet.
+  Standaard false verbergt de afteltijd.
+*/
+const SHOW_COUNTDOWN = false;
+
+/*
+  De exit-popup verschijnt maximaal één keer per paginabezoek.
+*/
+</script>
+
+<div class="video-bg" aria-hidden="true">
+  <video id="backgroundVideo" autoplay muted loop playsinline preload="metadata">
+    <source src="was.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="layout">
+  <header class="nav">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">N</span>
+      <span>USA CONNECTIONS</span>
+    </div>
+    <div class="nav-note">New People · New Possibilities</div>
+  </header>
+
+  <main class="stage">
+    <section class="editorial">
+      <div class="eyebrow">A Place for New Connections</div>
+
+      <h1>
+        Sometimes something<br>
+        wonderful starts with<br>
+        <em>a simple hello.</em>
+      </h1>
+
+      <p class="editorial-copy">
+        The best conversations sometimes begin when you least expect them.
+        Discover a profile, meet someone new,
+        and see where the conversation takes you.
+      </p>
+
+      <div class="editorial-foot">
+        <span class="foot-line"></span>
+        <span>At your own pace</span>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Profile introduction">
+      <div class="card-top">
+        <span class="card-kicker">DISCOVER A PROFILE</span>
+        <span class="status">
+          <span class="status-dot"></span>
+          US PROFILE
+        </span>
+      </div>
+
+      <div class="portrait">
+        <img
+          src="preview.jpg"
+          alt="Example profile photo"
+          onerror="this.style.display='none';"
+        >
+
+        <div class="portrait-caption">
+          <div>
+            <h2 class="person-name">
+              <span id="profileName"></span>
+            </h2>
+            <div class="person-location" id="profileLocation"></div>
+          </div>
+          <span class="portrait-tag">PROFILE</span>
+        </div>
+      </div>
+
+      <p class="intro">
+        Maybe it starts with a simple question.
+        Maybe you hit it off right away.
+        Take a look and see what is possible.
+      </p>
+
+      <div class="divider"></div>
+
+      <div class="countdown-wrap" id="countdownWrap" hidden>
+        <span class="countdown-label">Time remaining</span>
+        <div class="timer" role="timer" aria-label="Verbleibende Zeit">
+          <span class="time" id="minutes">14</span>
+          <span class="time-separator">:</span>
+          <span class="time" id="seconds">00</span>
+        </div>
+      </div>
+
+      <a
+        class="cta"
+        id="mainCTA"
+        href="#"
+        rel="nofollow sponsored"
+      >
+        <span>View Profile</span>
+        <span class="cta-arrow" aria-hidden="true">↗</span>
+      </a>
+
+      <div class="trust">
+        <span aria-hidden="true">◇</span>
+        <span>You decide whether you would like to continue</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>USA Connections</span>
+    <span>18+ · <a href="#" id="privacyLink">Privacy</a></span>
+  </footer>
+</div>
+
+<div
+  class="popup"
+  id="exitPopup"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="popupTitle"
+>
+  <div class="popup-box">
+    <button class="close" id="closePopup" aria-label="Close dialog">×</button>
+
+    <div class="popup-symbol" aria-hidden="true">✦</div>
+
+    <h2 id="popupTitle">Would you like to look around a little longer?</h2>
+
+    <p>
+      You can view the profile whenever you like.
+      It is entirely up to you whether you want to continue.
+    </p>
+
+    <a
+      class="cta"
+      id="popupCTA"
+      href="#"
+      rel="nofollow sponsored"
+    >
+      <span>View Profile</span>
+      <span class="cta-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <button class="popup-secondary" id="stayButton">
+      No thanks, I’ll stay here
+    </button>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   PROFILE AND LINKS
+===================================================== */
+
+const mainCTA = document.getElementById("mainCTA");
+const popupCTA = document.getElementById("popupCTA");
+const exitPopup = document.getElementById("exitPopup");
+const closePopupButton = document.getElementById("closePopup");
+const stayButton = document.getElementById("stayButton");
+
+document.getElementById("profileName").textContent =
+  `${PROFILE_NAME}, ${PROFILE_AGE}`;
+
+document.getElementById("profileLocation").textContent =
+  PROFILE_LOCATION;
+
+/*
+  Gebruik de ingestelde affiliate-link ongewijzigd.
+  Er worden geen parameters overschreven of toegevoegd.
+*/
+function configureCTA(link) {
+  try {
+    const url = new URL(AFFILIATE_URL);
+    if (!["https:", "http:"].includes(url.protocol)) throw new Error("Invalid URL");
+    link.href = url.href;
+  } catch {
+    link.href = "#";
+    link.setAttribute("aria-disabled", "true");
+    link.title = "Please add a valid destination URL first.";
+  }
+}
+configureCTA(mainCTA);
+configureCTA(popupCTA);
+
+function guardCTA(event) {
+  if (mainCTA.getAttribute("aria-disabled") === "true") {
+    event.preventDefault();
+    alert("Please add a valid destination URL in the configuration first.");
+  }
+}
+mainCTA.addEventListener("click", guardCTA);
+popupCTA.addEventListener("click", guardCTA);
+
+/* =====================================================
+   BACKGROUND VIDEO
+===================================================== */
+
+const backgroundVideo = document.getElementById("backgroundVideo");
+
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  backgroundVideo.pause();
+} else {
+  const playPromise = backgroundVideo.play();
+
+  if (playPromise && typeof playPromise.catch === "function") {
+    playPromise.catch(() => {
+      /* The page still works if autoplay is blocked. */
+    });
+  }
+}
+
+/* =====================================================
+   COUNTDOWN
+   Hidden by default because an artificial time limit can mislead visitors.
+   Enable it only for a genuine offer with a real deadline.
+===================================================== */
+
+const countdownWrap = document.getElementById("countdownWrap");
+const minuteElement = document.getElementById("minutes");
+const secondElement = document.getElementById("seconds");
+
+let remainingSeconds = Math.max(0, COUNTDOWN_MINUTES * 60);
+let countdownInterval = null;
+
+function updateCountdown() {
+  const minutes = Math.floor(remainingSeconds / 60);
+  const seconds = remainingSeconds % 60;
+
+  minuteElement.textContent = String(minutes).padStart(2, "0");
+  secondElement.textContent = String(seconds).padStart(2, "0");
+
+  if (remainingSeconds <= 0) {
+    clearInterval(countdownInterval);
+    countdownInterval = null;
+    return;
+  }
+
+  remainingSeconds -= 1;
+}
+
+if (SHOW_COUNTDOWN && Number.isFinite(COUNTDOWN_MINUTES) &&
+    COUNTDOWN_MINUTES > 0) {
+  countdownWrap.hidden = false;
+  updateCountdown();
+  countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+/* =====================================================
+   AFFILIATE CLICK TRACKING
+===================================================== */
+
+/*
+  Optionele lokale meting. Dit is geen servergebaseerde
+  affiliate-conversietracking. Gebruik de rapportage van het netwerk
+  of een goedgekeurd analyseplatform om
+  echte klikken en conversies te bevestigen.
+*/
+
+function trackAffiliateClick(source) {
+  try {
+    sessionStorage.setItem("affiliate_clicked", "1");
+    sessionStorage.setItem("affiliate_click_source", source);
+    sessionStorage.setItem("affiliate_click_time", new Date().toISOString());
+  } catch (error) {
+    /* Storage may be blocked; navigation continues. */
+  }
+}
+
+mainCTA.addEventListener("click", () => {
+  trackAffiliateClick("main");
+});
+
+popupCTA.addEventListener("click", () => {
+  trackAffiliateClick("popup");
+});
+
+/* =====================================================
+   EXIT-INTENT POPUP
+===================================================== */
+
+let popupShown = false;
+let popupDismissed = false;
+let previousFocus = null;
+let mobileReturnTimer = null;
+
+function showPopup() {
+  if (popupShown || popupDismissed) return;
+
+  popupShown = true;
+  previousFocus = document.activeElement;
+
+  exitPopup.classList.add("show");
+  exitPopup.setAttribute("aria-hidden", "false");
+  document.body.classList.add("popup-open");
+
+  closePopupButton.focus();
+}
+
+function hidePopup() {
+  exitPopup.classList.remove("show");
+  exitPopup.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("popup-open");
+  popupDismissed = true;
+
+  if (previousFocus && typeof previousFocus.focus === "function") {
+    previousFocus.focus();
+  }
+}
+
+/* Desktop: first detect when the pointer enters the page. */
+let pointerEntered = false;
+
+document.addEventListener("mouseenter", () => {
+  pointerEntered = true;
+}, { once: true });
+
+document.addEventListener("mouseout", event => {
+  if (
+    !pointerEntered ||
+    event.relatedTarget !== null ||
+    event.clientY > 5 ||
+    window.innerWidth <= 800
+  ) return;
+
+  showPopup();
+});
+
+/*
+  Mobiel: open de popup niet automatisch wanneer de gebruiker terugkeert
+  vanuit een andere app. Toon deze alleen na een
+  latere, expliciete handeling. Standaard is er geen automatische
+  mobiele popup om storend gedrag te voorkomen.
+*/
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden && mobileReturnTimer) {
+    clearTimeout(mobileReturnTimer);
+    mobileReturnTimer = null;
+  }
+});
+
+closePopupButton.addEventListener("click", hidePopup);
+stayButton.addEventListener("click", hidePopup);
+
+exitPopup.addEventListener("click", event => {
+  if (event.target === exitPopup) hidePopup();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && popupShown) hidePopup();
+});
+
+/* No external privacy policy URL has been configured yet. */
+document.getElementById("privacyLink").addEventListener("click", event => {
+  event.preventDefault();
+  /* Add your published privacy policy URL before launch. */
+});
+</script>
+</body>
+</html>
